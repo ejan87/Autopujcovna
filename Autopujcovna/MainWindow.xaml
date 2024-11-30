@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Autopujcovna"
         mc:Ignorable="d"
-        Title="Autopůjčovna" Height="600" Width="800"
-        SizeToContent="WidthAndHeight" 
-        WindowStartupLocation="CenterScreen" 
-        MinWidth="800">
+        Title="Autopůjčovna"
+        SizeToContent="WidthAndHeight"
+        MinWidth="800"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <!-- Styl pro tlačítka -->
         <Style x:Key="CustomButtonStyle" TargetType="Button">
