@@ -5,7 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Autopujcovna"
         mc:Ignorable="d"
-        Title="Autopůjčovna" Height="600" Width="800">
+        Title="Autopůjčovna" Height="600" Width="800"
+        SizeToContent="WidthAndHeight" 
+        WindowStartupLocation="CenterScreen" 
+        MinWidth="800">
+    <Window.Resources>
+        <!-- Styl pro tlačítka -->
+        <Style x:Key="CustomButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#0078D4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Style.Triggers>
+                <!-- Hover efekt pro změnu barvy -->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#005A9E"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+                <!-- Kliknutý stav tlačítka -->
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#003C6B"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Styl pro GroupBox -->
+        <Style x:Key="CustomGroupBoxStyle" TargetType="GroupBox">
+            <Setter Property="Header" Value=""/>
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" FontSize="16" FontWeight="Bold" Foreground="White" Background="#D4AF37" Padding="5"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="#D4AF37"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,53 +58,52 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3"/>
-            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        
-        <!--Přidání vozidla-->
-        <GroupBox Header="Přidání vozidla" Grid.Row="0" Grid.Column="0" Margin="5">
+
+        <!-- Přidání vozidla -->
+        <GroupBox Header="Přidání vozidla" Grid.Row="0" Grid.Column="0" Margin="5" Style="{StaticResource CustomGroupBoxStyle}">
             <StackPanel Margin="10">
                 <Label Content="Značka"/>
-                <TextBox x:Name="txtZnacka" Margin="0,5"/>
+                <TextBox x:Name="txtZnacka" Margin="0,5" Width="200"/>
                 <Label Content="Model"/>
-                <TextBox x:Name="txtModel" Margin="0,5"/>
+                <TextBox x:Name="txtModel" Margin="0,5" Width="200"/>
                 <Label Content="Rok výroby"/>
-                <TextBox x:Name="txtRokVyroby" Margin="0,5"/>
+                <TextBox x:Name="txtRokVyroby" Margin="0,5" Width="200"/>
                 <Label Content="SPZ"/>
-                <TextBox x:Name="txtSPZ" Margin="0,5"/>
+                <TextBox x:Name="txtSPZ" Margin="0,5" Width="200"/>
                 <Label Content="Tarif"/>
-                <TextBox x:Name="txtTarif" Margin="0,5"/>
-                <Button Content="Přidat vozidlo" Click="BtnPridatVozidlo_Click" Margin="0,10"/>
+                <TextBox x:Name="txtTarif" Margin="0,5" Width="200"/>
+                <Button Content="Přidat vozidlo" Click="BtnPridatVozidlo_Click" Margin="0,10" Style="{StaticResource CustomButtonStyle}"/>
             </StackPanel>
         </GroupBox>
-        
-        <!--Seznam vozidel-->
-        <GroupBox Header="Seznam vozidel" Grid.Row="1" Grid.Column="0" Margin="5">
+
+        <!-- Seznam vozidel -->
+        <GroupBox Header="Seznam vozidel" Grid.Row="1" Grid.Column="0" Margin="5" Style="{StaticResource CustomGroupBoxStyle}">
             <StackPanel>
                 <ComboBox x:Name="cmbStav" Width="200" Margin="5">
                     <ComboBoxItem Content="Volné"/>
                     <ComboBoxItem Content="Rezervované"/>
                     <ComboBoxItem Content="Půjčené"/>
                 </ComboBox>
-                <Button Content="Filtrovat" Click="BtnFiltruj_Click" Margin="5"/>
+                <Button Content="Filtrovat" Click="BtnFiltruj_Click" Margin="5" Style="{StaticResource CustomButtonStyle}"/>
                 <ListBox x:Name="lstVozidla" Margin="5" DisplayMemberPath="ToString"/>
             </StackPanel>
         </GroupBox>
-        
-        <!--Výpůjčky-->
-        <GroupBox Header="Správa výpůjček" Grid.Row="1" Grid.Column="1" Margin="5">
+
+        <!-- Výpůjčky -->
+        <GroupBox Header="Správa výpůjček" Grid.Row="1" Grid.Column="1" Margin="5" Style="{StaticResource CustomGroupBoxStyle}">
             <StackPanel>
-                <Button Content="Rezervovat" Click="BtnRezervovat_Click" Margin="5"/>
-                <Button Content="Půjčit" Click="BtnPujcit_Click" Margin="5"/>
-                <Button Content="Vrátit" Click="BtnVratit_Click" Margin="5"/>
+                <Button Content="Rezervovat" Click="BtnRezervovat_Click" Margin="5" Style="{StaticResource CustomButtonStyle}"/>
+                <Button Content="Půjčit" Click="BtnPujcit_Click" Margin="5" Style="{StaticResource CustomButtonStyle}"/>
+                <Button Content="Vrátit" Click="BtnVratit_Click" Margin="5" Style="{StaticResource CustomButtonStyle}"/>
             </StackPanel>
         </GroupBox>
-        
-        <!--Přehled výpůjček-->
-        <GroupBox Header="Výpůjčky" Grid.Row="2" Grid.ColumnSpan="2" Margin="5">
+
+        <!-- Přehled výpůjček -->
+        <GroupBox Header="Výpůjčky" Grid.Row="2" Grid.ColumnSpan="2" Margin="5" Style="{StaticResource CustomGroupBoxStyle}">
             <ListBox x:Name="lstVypujcky" Margin="5" DisplayMemberPath="ToString"/>
         </GroupBox>
-
     </Grid>
 </Window>
