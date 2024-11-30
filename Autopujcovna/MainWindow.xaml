@@ -1,0 +1,65 @@
+﻿<Window x:Class="Autopujcovna.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Autopujcovna"
+        mc:Ignorable="d"
+        Title="Autopůjčovna" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="2"/>
+        </Grid.ColumnDefinitions>
+        
+        <!--Přidání vozidla-->
+        <GroupBox Header="Přidání vozidla" Grid.Row="0" Grid.Column="0" Margin="5">
+            <StackPanel Margin="10">
+                <Label Content="Značka"/>
+                <TextBox x:Name="txtZnacka" Margin="0,5"/>
+                <Label Content="Model"/>
+                <TextBox x:Name="txtModel" Margin="0,5"/>
+                <Label Content="Rok výroby"/>
+                <TextBox x:Name="txtRokVyroby" Margin="0,5"/>
+                <Label Content="SPZ"/>
+                <TextBox x:Name="txtSPZ" Margin="0,5"/>
+                <Label Content="Tarif"/>
+                <TextBox x:Name="txtTarif" Margin="0,5"/>
+                <Button Content="Přidat vozidlo" Click="BtnPridatVozidlo_Click" Margin="0,10"/>
+            </StackPanel>
+        </GroupBox>
+        
+        <!--Seznam vozidel-->
+        <GroupBox Header="Seznam vozidel" Grid.Row="1" Grid.Column="0" Margin="5">
+            <StackPanel>
+                <ComboBox x:Name="cmbStav" Width="200" Margin="5">
+                    <ComboBoxItem Content="Volné"/>
+                    <ComboBoxItem Content="Rezervované"/>
+                    <ComboBoxItem Content="Půjčené"/>
+                </ComboBox>
+                <Button Content="Filtrovat" Click="BtnFiltruj_Click" Margin="5"/>
+                <ListBox x:Name="lstVozidla" Margin="5" DisplayMemberPath="ToString"/>
+            </StackPanel>
+        </GroupBox>
+        
+        <!--Výpůjčky-->
+        <GroupBox Header="Správa výpůjček" Grid.Row="1" Grid.Column="1" Margin="5">
+            <StackPanel>
+                <Button Content="Rezervovat" Click="BtnRezervovat_Click" Margin="5"/>
+                <Button Content="Půjčit" Click="BtnPujcit_Click" Margin="5"/>
+                <Button Content="Vrátit" Click="BtnVratit_Click" Margin="5"/>
+            </StackPanel>
+        </GroupBox>
+        
+        <!--Přehled výpůjček-->
+        <GroupBox Header="Výpůjčky" Grid.Row="2" Grid.ColumnSpan="2" Margin="5">
+            <ListBox x:Name="lstVypujcky" Margin="5" DisplayMemberPath="ToString"/>
+        </GroupBox>
+
+    </Grid>
+</Window>
